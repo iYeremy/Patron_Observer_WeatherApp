@@ -15,7 +15,11 @@ public class Main {
         new StatisticsDisplay(weatherData);
 
         ForecastDisplay forecast = 
-        new ForecastDisplay(weatherData)
+        new ForecastDisplay(weatherData);
+
+        PressureDisplay atmosfery =
+        new PressureDisplay(weatherData);
+
 
         weatherData.setMeasurements(28, 65, 1010);
         weatherData.setMeasurements(38, 85, 1030);
