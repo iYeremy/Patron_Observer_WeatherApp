@@ -14,6 +14,9 @@ public class Main {
         StatisticsDisplay stats =
         new StatisticsDisplay(weatherData);
 
+        ForecastDisplay forecast = 
+        new ForecastDisplay(weatherData)
+
         weatherData.setMeasurements(28, 65, 1010);
         weatherData.setMeasurements(38, 85, 1030);
 
