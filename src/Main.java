@@ -2,29 +2,37 @@ import subject.*;
 import observer.*;
 
 public class Main {
+
     public static void main(String[] args) {
-        
-        // create Subject
+
+        System.out.println("=== Weather Station Simulation ===\n");
+
+        // Create Subject
         WeatherData weatherData = new WeatherData();
 
-        // create observers (register in constructor)
-        CurrentConditionsDisplay conditions = 
-        new CurrentConditionsDisplay(weatherData);
+        // Create Observers (auto-register in constructor)
+        CurrentConditionsDisplay currentDisplay =
+                new CurrentConditionsDisplay(weatherData);
 
-        StatisticsDisplay stats =
-        new StatisticsDisplay(weatherData);
+        StatisticsDisplay statisticsDisplay =
+                new StatisticsDisplay(weatherData);
 
-        ForecastDisplay forecast = 
-        new ForecastDisplay(weatherData);
+        ForecastDisplay forecastDisplay =
+                new ForecastDisplay(weatherData);
 
-        PressureDisplay atmosfery =
-        new PressureDisplay(weatherData);
+        PressureDisplay pressureDisplay =
+                new PressureDisplay(weatherData);
 
+        HeatIndexDisplay heatIndexDisplay =
+                new HeatIndexDisplay(weatherData);
 
-        weatherData.setMeasurements(28, 65, 1010);
-        weatherData.setMeasurements(38, 85, 1030);
+        // Simulated measurements
+        System.out.println("---- New Measurements ----");
+        weatherData.setMeasurements(28f, 65f, 1010f);
 
-        
+        System.out.println("\n---- New Measurements ----");
+        weatherData.setMeasurements(38f, 85f, 1030f);
 
+        System.out.println("\n---- End Simulation ----");
     }
 }
