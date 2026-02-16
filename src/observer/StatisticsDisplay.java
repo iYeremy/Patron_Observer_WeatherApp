@@ -2,33 +2,45 @@ package observer;
 import subject.Subject;
 import subject.WeatherData;
 
-public class StatisticsDisplay implements Observer, DisplayInterface{
+public class StatisticsDisplay implements Observer, DisplayInterface {
 
-    private float temperature;
-    private float humidity;
-    private float pressure;
+    private float maxTemp = Float.MIN_VALUE;
+    private float minTemp = Float.MAX_VALUE;
+    private float tempSum = 0.0f;
+    private int numReadings = 0;
+
     private WeatherData weatherData;
 
-    public StatisticsDisplay(WeatherData weatherData){
+    public StatisticsDisplay(WeatherData weatherData) {
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }
 
     @Override
-    public void display(){
-        System.out.println("Current conditions: " +
-                temperature + "C, " +
-                humidity + "% humidity and " + pressure + "");
+    public void update() {
+        float temp = weatherData.getTemperature();
+
+        tempSum += temp;
+        numReadings++;
+
+        if (temp > maxTemp) {
+            maxTemp = temp;
+        }
+
+        if (temp < minTemp) {
+            minTemp = temp;
+        }
+
+        display();
     }
 
     @Override
-    public void update(){
-        this.temperature = weatherData.getTemperature();
-        this.humidity = weatherData.getHumidity();
-        this.pressure = weatherData.getPressure();
+    public void display() {
+        float avg = tempSum / numReadings;
 
-        display();
-        
+        System.out.println(
+            "Avg/Min/Max temperature = " +
+            avg + "/" + minTemp + "/" + maxTemp
+        );
     }
-
 }

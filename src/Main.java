@@ -8,10 +8,16 @@ public class Main {
         WeatherData weatherData = new WeatherData();
 
         // create observers (register in constructor)
-        StatisticsDisplay display = 
+        CurrentConditionsDisplay conditions = 
+        new CurrentConditionsDisplay(weatherData);
+
+        StatisticsDisplay stats =
         new StatisticsDisplay(weatherData);
 
         weatherData.setMeasurements(28, 65, 1010);
+        weatherData.setMeasurements(38, 85, 1030);
+
+        
 
     }
 }
